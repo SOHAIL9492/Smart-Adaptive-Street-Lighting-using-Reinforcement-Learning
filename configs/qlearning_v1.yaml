@@ -1,0 +1,54 @@
+# ============================================================
+# Smart Adaptive Street Lighting – Q-Learning Configuration v1
+# SDG 7 (Clean Energy) + SDG 11 (Sustainable Cities)
+# ============================================================
+
+run:
+  id: "run_001"
+  seed: 42
+  description: "Baseline Q-learning with epsilon-greedy exploration"
+
+environment:
+  episode_length: 24          # one step per hour → full day
+  max_pedestrians: 10
+  start_hour: null            # null = random start each episode
+
+agent:
+  algorithm: "q_learning"
+  learning_rate: 0.1          # alpha
+  discount_factor: 0.95       # gamma
+  epsilon: 0.1                # exploration rate (epsilon-greedy)
+  epsilon_min: 0.01
+  epsilon_decay: 0.995        # applied each episode
+
+training:
+  episodes: 5000
+  eval_every: 500             # evaluate against baseline every N episodes
+  log_every: 100              # print progress every N episodes
+
+evaluation:
+  episodes: 200               # episodes used for final evaluation
+  render: false
+
+policy:
+  save_dir: "policies"
+  v1_checkpoint: 1000         # save policy_v1.pkl after this many episodes
+  v2_checkpoint: 5000         # save policy_v2.pkl at the end
+
+logging:
+  results_file: "experiments/results_run1.csv"
+  plot_dir: "experiments/plots"
+
+reward:
+  pedestrian_bright:    10.0
+  no_pedestrian_full: -10.0
+  energy_waste:         -5.0
+  dim_with_pedestrian:  -2.0
+  off_with_pedestrian: -15.0
+
+energy:
+  watts_off:    0
+  watts_dim:   30
+  watts_medium: 60
+  watts_full:  100
+  cost_per_kwh: 0.12          # USD per kWh

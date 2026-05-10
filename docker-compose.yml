@@ -1,0 +1,12 @@
+version: '3.8'
+
+services:
+  api:
+    build: .
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./policies:/app/policies
+      - ./sim:/app/sim
+    environment:
+      - POLICY_PATH=/app/policies/policy_v2.pkl

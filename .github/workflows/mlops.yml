@@ -1,0 +1,67 @@
+name: MLOps Pipeline
+
+on:
+  push:
+    branches:
+      - main
+      - dev
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  train-and-evaluate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install Dependencies
+        run: |
+          pip install -r requirements.txt
+          pip install dvc
+
+      - name: Pull Data & Models (DVC)
+        run: |
+          # dvc pull
+          echo "Simulated DVC pull for data versioning"
+
+      - name: Run Training & MLFlow Tracking
+        run: |
+          python train.py --config configs/qlearning_v1.yaml
+        env:
+          MLFLOW_TRACKING_URI: "sqlite:///mlflow.db"
+
+      - name: Commit Updated Policy (GitOps)
+        if: github.ref == 'refs/heads/main'
+        run: |
+          git config --global user.name 'github-actions[bot]'
+          git config --global user.email 'github-actions[bot]@users.noreply.github.com'
+          git add policies/
+          git commit -m "Auto-update trained policy via CI/CD [skip ci]" || echo "No changes to commit"
+          git push
+
+  deploy:
+    needs: train-and-evaluate
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main'
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v3
+
+      - name: Build and Push Docker Image
+        run: |
+          echo "Building Docker image..."
+          docker build -t streetlight-api:latest .
+          # In a real setup, this would be pushed to Docker Hub or ECR
+          # docker push streetlight-api:latest
+
+      - name: GitOps - Update Helm / K8s configs
+        run: |
+          echo "Updating Kubernetes manifests for deployment"
+          # Example: update image tag in k8s/deployment.yaml

@@ -1,0 +1,12 @@
+run_id,episodes,avg_reward_rl,avg_reward_baseline,avg_energy_rl_wh,avg_energy_baseline_wh,energy_saved_pct,cost_saved_usd_day,epsilon,learning_rate,discount_factor,description
+run_001,5000,192.2075,-141.7,1524.1,1200.0,-27.01,-0.0389,0.01,0.1,0.95,Baseline Q-learning with epsilon-greedy exploration
+run_001,5000,194.725,-135.85,1480.25,1200.0,-23.35,-0.0336,0.01,0.1,0.95,Baseline Q-learning with epsilon-greedy exploration
+run_001,5000,188.8475,-135.2,1520.25,1200.0,-26.69,-0.0384,0.01,0.1,0.95,Baseline Q-learning with epsilon-greedy exploration
+run_001,5000,182.8975,-137.1,1501.4,1200.0,-25.12,-0.0362,0.01,0.1,0.95,Baseline Q-learning with epsilon-greedy exploration
+run_001,5000,178.23,-138.35,1473.5,1200.0,-22.79,-0.0328,0.01,0.1,0.95,Baseline Q-learning with epsilon-greedy exploration
+run_001,5000,189.0,-137.725,1482.15,1200.0,-23.51,-0.0339,0.01,0.1,0.95,Baseline Q-learning with epsilon-greedy exploration
+run_001,5000,189.935,-135.775,1448.75,1200.0,-20.73,-0.0298,0.01,0.1,0.95,Baseline Q-learning with epsilon-greedy exploration
+run_001,5000,188.205,-139.0,1525.5,1200.0,-27.12,-0.0391,0.01,0.1,0.95,Baseline Q-learning with epsilon-greedy exploration
+run_001,5000,185.7475,-138.4,1485.15,1200.0,-23.76,-0.0342,0.01,0.1,0.95,Baseline Q-learning with epsilon-greedy exploration
+run_001,5000,190.275,-139.45,1559.85,1200.0,-29.99,-0.0432,0.01,0.1,0.95,Baseline Q-learning with epsilon-greedy exploration
+run_001,5000,189.91,-135.425,1497.3,1200.0,-24.77,-0.0357,0.01,0.1,0.95,Baseline Q-learning with epsilon-greedy exploration
