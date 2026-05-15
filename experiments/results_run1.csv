@@ -10,3 +10,7 @@ run_001,5000,188.205,-139.0,1525.5,1200.0,-27.12,-0.0391,0.01,0.1,0.95,Baseline 
 run_001,5000,185.7475,-138.4,1485.15,1200.0,-23.76,-0.0342,0.01,0.1,0.95,Baseline Q-learning with epsilon-greedy exploration
 run_001,5000,190.275,-139.45,1559.85,1200.0,-29.99,-0.0432,0.01,0.1,0.95,Baseline Q-learning with epsilon-greedy exploration
 run_001,5000,189.91,-135.425,1497.3,1200.0,-24.77,-0.0357,0.01,0.1,0.95,Baseline Q-learning with epsilon-greedy exploration
+run_001,5000,192.08,-137.675,1502.2,1200.0,-25.18,-0.0363,0.01,0.1,0.95,Baseline Q-learning with epsilon-greedy exploration
+run_001,5000,192.835,-135.55,1517.8,1200.0,-26.48,-0.0381,0.01,0.1,0.95,Baseline Q-learning with epsilon-greedy exploration
+run_001,5000,180.6975,-135.65,1446.0,1200.0,-20.5,-1.968,0.01,0.1,0.95,Baseline Q-learning with epsilon-greedy exploration
+run_001,5000,184.5575,-134.325,1492.35,1200.0,-24.36,-2.3388,0.01,0.1,0.95,Baseline Q-learning with epsilon-greedy exploration

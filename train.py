@@ -284,7 +284,7 @@ def log_results(cfg: dict,
     file_exists = os.path.isfile(log_cfg["results_file"])
 
     energy_saved_pct = 100.0 * (baseline_avg_energy - rl_avg_energy) / (baseline_avg_energy + 1e-9)
-    cost_saved       = (baseline_avg_energy - rl_avg_energy) / 1000.0 * cost_kwh   # USD per day
+    cost_saved       = (baseline_avg_energy - rl_avg_energy) / 1000.0 * cost_kwh   # Rs per day
 
     row = {
         "run_id":               run_cfg["id"],
@@ -294,7 +294,7 @@ def log_results(cfg: dict,
         "avg_energy_rl_wh":     round(rl_avg_energy, 2),
         "avg_energy_baseline_wh": round(baseline_avg_energy, 2),
         "energy_saved_pct":     round(energy_saved_pct, 2),
-        "cost_saved_usd_day":   round(cost_saved, 4),
+        "cost_saved_rs_day":   round(cost_saved, 4),
         "epsilon":              round(agent.epsilon, 6),
         "learning_rate":        agent_cfg["learning_rate"],
         "discount_factor":      agent_cfg["discount_factor"],
@@ -327,7 +327,7 @@ def log_results(cfg: dict,
             "avg_energy_rl_wh": round(rl_avg_energy, 2),
             "avg_energy_baseline_wh": round(baseline_avg_energy, 2),
             "energy_saved_pct": round(energy_saved_pct, 2),
-            "cost_saved_usd_day": round(cost_saved, 4)
+            "cost_saved_rs_day": round(cost_saved, 4)
         })
         
         # Log the trained model
@@ -438,7 +438,7 @@ def plot_energy_comparison(rl_energy: float, baseline_energy: float,
 
     # ── Panel 3: Cost saved ────────────────────────────────────────────
     ax = axes[2]
-    _style_ax(ax, "Estimated Cost Saved (USD/day)")
+    _style_ax(ax, "Estimated Cost Saved (Rs/day)")
     cost_rl       = rl_energy       / 1000.0 * cost_kwh
     cost_baseline = baseline_energy / 1000.0 * cost_kwh
     saved         = max(0, cost_baseline - cost_rl)
@@ -448,8 +448,8 @@ def plot_energy_comparison(rl_energy: float, baseline_energy: float,
                   width=0.5, edgecolor=PALETTE["bg"], linewidth=1.5)
     for bar, val in zip(bars, [cost_baseline, cost_rl, saved]):
         ax.text(bar.get_x() + bar.get_width()/2, bar.get_height() + 0.0002,
-                f"${val:.4f}", ha="center", color=PALETTE["text"], fontsize=8)
-    ax.set_ylabel("USD per day")
+                f"Rs {val:.4f}", ha="center", color=PALETTE["text"], fontsize=8)
+    ax.set_ylabel("Rs per day")
 
     plt.tight_layout()
     path = os.path.join(plot_dir, "energy_comparison.png")
@@ -473,7 +473,7 @@ def print_comparison(row: dict, rl_unnecessary: float, baseline_unnecessary: flo
     print(f"  {'Avg Energy Used (Wh/day)':<35} {row['avg_energy_rl_wh']:>8.0f}  {row['avg_energy_baseline_wh']:>8.0f}")
     print(f"  {'Unnecessary Lighting (%)':<35} {rl_unnecessary:>7.1f}%  {baseline_unnecessary:>7.1f}%")
     print(f"  {'Energy Saved (%)':<35} {row['energy_saved_pct']:>7.2f}%  {'--':>8}")
-    print(f"  {'Cost Saved (USD/day)':<35} ${row['cost_saved_usd_day']:>7.4f}  {'--':>8}")
+    print(f"  {'Cost Saved (Rs/day)':<35} Rs {row['cost_saved_rs_day']:>7.4f}  {'--':>8}")
     print(f"  {sep}\n")
 
 

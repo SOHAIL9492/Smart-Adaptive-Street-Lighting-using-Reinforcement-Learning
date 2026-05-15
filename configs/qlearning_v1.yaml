@@ -51,4 +51,4 @@ energy:
   watts_dim:   30
   watts_medium: 60
   watts_full:  100
-  cost_per_kwh: 0.12          # USD per kWh
+  cost_per_kwh: 8.0           # Rs per kWh
